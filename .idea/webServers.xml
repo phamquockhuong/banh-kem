@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4a8c75a2-fcd4-4372-9e76-04eaebc8782f" name="T_186">
+        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="103.57.220.186" port="24700" sshConfigId="5f5d3d77-f7ac-44fa-9d79-33a7b1981245" sshConfig="root@103.57.220.186:24700 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="ad3a6106-1b4d-4210-9365-aa2dcfa1419b" name="Techfest">
+        <fileTransfer rootFolder="/var/www/" accessType="SFTP" host="103.82.22.226" port="22" sshConfigId="b8315a29-b75f-4d1c-a4c2-f62faed3c66e" sshConfig="root@103.82.22.226:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="ace4e917-9cb0-4956-9164-c04926d1b2e6" name="T_62">
+        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="103.57.220.62" port="24700" sshConfigId="26fda1ef-996d-4166-a5eb-accec530d423" sshConfig="root@103.57.220.62:24700 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="87c5c2b5-f876-4daa-a592-56255b4856a4" name="T222">
+        <fileTransfer rootFolder="etc" accessType="SFTP" host="103.75.184.222" port="24700" sshConfigId="338dae87-4aec-4efe-9483-ced6e3faf4c8" sshConfig="root@103.75.184.222:24700 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

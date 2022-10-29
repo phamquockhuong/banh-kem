@@ -12,10 +12,9 @@ F<!doctype html>
     <title>Baker'sAlley Admin</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <link rel="apple-touch-icon" href="{{ asset('public') }}/admin/apple-icon.png">
-    <link rel="shortcut icon" href="{{ asset('public') }}/admin/favicon.ico">
-
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/vendors/themify-icons/css/themify-icons.css">
@@ -27,7 +26,10 @@ F<!doctype html>
     <link rel="stylesheet" href="{{ asset('public') }}/admin/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
+   
+    <script src="{{ asset('public') }}/jquery/jquery-3.4.1.min.js"></script>
+    {{-- <script src="{{ asset('public') }}/bootstrap4/js/bootstrap.js"></script> --}}
+    
 </head>
 
 <body>
@@ -49,7 +51,7 @@ F<!doctype html>
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="{{ route('admin.dashboard.index') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="{{ route('admin.dashboard.index') }}"> <i class="menu-icon fa fa-dashboard"></i>@lang('lang.dashboard')</a>
                     </li>
                     <h3 class="menu-title">Management </h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
@@ -69,17 +71,17 @@ F<!doctype html>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Category</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>@lang('lang.category')</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="{{ route('admin.category.index') }}">List Category</a></li>
-                            <li><i class="fa fa-table"></i><a href="{{ route('admin.category.create') }}">Add Category</a></li>
+                            {{-- <li><i class="fa fa-table"></i><a href="#">Add Category</a></li> --}}
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>@lang('lang.product')</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{ route('admin.product.index') }}">List Product</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Add Product</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -163,145 +165,152 @@ F<!doctype html>
                             <div class="dropdown-menu" aria-labelledby="notification">
                                 <p class="red">You have 3 Notification</p>
                                 <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p>Server #1 overloaded.</p>
-                            </a>
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
                                 <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <i class="fa fa-info"></i>
-                                <p>Server #2 overloaded.</p>
-                            </a>
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
                                 <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <i class="fa fa-warning"></i>
-                                <p>Server #3 overloaded.</p>
-                            </a>
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
                             </div>
                         </div>
 
                         <div class="dropdown for-message">
                             <button class="btn btn-secondary dropdown-toggle" type="button"
-                                id="message"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-email"></i>
-                                <span class="count bg-primary">9</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="message">
-                                <p class="red">You have 4 Mails</p>
-                                <a class="dropdown-item media bg-flat-color-1" href="#">
+                            id="message"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ti-email"></i>
+                            <span class="count bg-primary">9</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="message">
+                            <p class="red">You have 4 Mails</p>
+                            <a class="dropdown-item media bg-flat-color-1" href="#">
                                 <span class="photo media-left"><img alt="avatar" src="{{ asset('public') }}/admin/images/avatar/1.jpg"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Jonathan Smith</span>
                                     <span class="time float-right">Just now</span>
-                                        <p>Hello, this is an example msg</p>
+                                    <p>Hello, this is an example msg</p>
                                 </span>
                             </a>
-                                <a class="dropdown-item media bg-flat-color-4" href="#">
+                            <a class="dropdown-item media bg-flat-color-4" href="#">
                                 <span class="photo media-left"><img alt="avatar" src="{{ asset('public') }}/admin/images/avatar/2.jpg"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Jack Sanders</span>
                                     <span class="time float-right">5 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur</p>
                                 </span>
                             </a>
-                                <a class="dropdown-item media bg-flat-color-5" href="#">
+                            <a class="dropdown-item media bg-flat-color-5" href="#">
                                 <span class="photo media-left"><img alt="avatar" src="{{ asset('public') }}/admin/images/avatar/3.jpg"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Cheryl Wheeler</span>
                                     <span class="time float-right">10 minutes ago</span>
-                                        <p>Hello, this is an example msg</p>
+                                    <p>Hello, this is an example msg</p>
                                 </span>
                             </a>
-                                <a class="dropdown-item media bg-flat-color-3" href="#">
+                            <a class="dropdown-item media bg-flat-color-3" href="#">
                                 <span class="photo media-left"><img alt="avatar" src="{{ asset('public') }}/admin/images/avatar/4.jpg"></span>
                                 <span class="message media-body">
                                     <span class="name float-left">Rachel Santos</span>
                                     <span class="time float-right">15 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur</p>
                                 </span>
                             </a>
-                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-5">
-                    <div class="user-area dropdown float-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="{{ asset('public') }}/admin/images/admin.jpg" alt="User Avatar">
-                        </a>
-
-                        <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
-                        </div>
-                    </div>
-
-                    <div class="language-select dropdown" id="language-select">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="language">
-                            <div class="dropdown-item">
-                                <span class="flag-icon flag-icon-fr"></span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-es"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-us"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-it"></i>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
-        </header><!-- /header -->
-        <!-- Header-->
+            <div class="col-sm-5">
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="user-avatar rounded-circle" src="{{ asset('public') }}/admin/images/admin.jpg" alt="User Avatar">
+                    </a>
 
-        @yield('content')
-    </div><!-- /#right-panel -->
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
 
-    <!-- Right Panel -->
+                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
 
-    <script src="{{ asset('public') }}/admin/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="{{ asset('public') }}/admin/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="{{ asset('public') }}/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset('public') }}/admin/assets/js/main.js"></script>
+                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+
+                        <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                    </div>
+                </div>
+
+                <div class="language-select dropdown" id="language-select">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
+                        @if(Session::has('locale')) 
+                            @if(Session::get('locale') == 'vi')
+                                <span class="flag-icon flag-icon-vn"></span>
+                            @endif
+                            @if(Session::get('locale') == 'en')
+                                <i class="flag-icon flag-icon-us"></i>
+                            @endif
+                        @endif
+                         @if(Session::has('locale')==null) 
+                            
+                                <i class="flag-icon flag-icon-us"></i>
+                
+                        @endif
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="language">
+                        <div class="dropdown-item">
+                            <a href="{{ url('lang/vi') }}"><span class="flag-icon flag-icon-vn"></span></a>
+                        </div>
+                        <div class="dropdown-item" style="margin-top: 5px;">
+                            <a href="{{ url('lang/en') }}"><i class="flag-icon flag-icon-us"></i></a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </header><!-- /header -->
+    <!-- Header-->
+
+    @yield('content')
+</div><!-- /#right-panel -->
+
+<!-- Right Panel -->
+
+<script src="{{ asset('public') }}/admin/vendors/jquery/dist/jquery.min.js"></script>
+<script src="{{ asset('public') }}/admin/vendors/popper.js/dist/umd/popper.min.js"></script>
+<script src="{{ asset('public') }}/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ asset('public') }}/admin/assets/js/main.js"></script>
 
 
-    <script src="{{ asset('public') }}/admin/vendors/chart.js/dist/Chart.bundle.min.js"></script>
-    <script src="{{ asset('public') }}/admin/assets/js/dashboard.js"></script>
-    <script src="{{ asset('public') }}/admin/assets/js/widgets.js"></script>
-    <script src="{{ asset('public') }}/admin/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="{{ asset('public') }}/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <script src="{{ asset('public') }}/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script>
-        (function($) {
-            "use strict";
+<script src="{{ asset('public') }}/admin/vendors/chart.js/dist/Chart.bundle.min.js"></script>
+<script src="{{ asset('public') }}/admin/assets/js/dashboard.js"></script>
+<script src="{{ asset('public') }}/admin/assets/js/widgets.js"></script>
+<script src="{{ asset('public') }}/admin/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+<script src="{{ asset('public') }}/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<script src="{{ asset('public') }}/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
 
-            jQuery('#vmap').vectorMap({
-                map: 'world_en',
-                backgroundColor: null,
-                color: '#ffffff',
-                hoverOpacity: 0.7,
-                selectedColor: '#1de9b6',
-                enableZoom: true,
-                showTooltip: true,
-                values: sample_data,
-                scaleColors: ['#1de9b6', '#03a9f5'],
-                normalizeFunction: 'polynomial'
-            });
-        })(jQuery);
-    </script>
-    @yield('js')
+<script>
+    (function($) {
+        "use strict";
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
+@yield('js')
 </body>
 
 </html>

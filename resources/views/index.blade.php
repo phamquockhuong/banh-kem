@@ -50,7 +50,7 @@
 						<div class="product-image">
 							<a href="#">
 								<img class="pic-1" src="{{url('public')}}/img/section-slide/3/slide3n.jpg">
-								<img class="pic-2" src="{{url('public')}}/img/section-slide/3/slide3n.jpg">
+								<img class="pic-2" src="{{url('public')}}/img/section-slide/1/slide1.jpg">
 							</a>
 							<ul class="social">
 								<li><a href="" data-tip="Quick View"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-zoom-in" fill="currentColor" xmlns="">
@@ -809,9 +809,6 @@
 	<div class="container-fluid">
 		<div class="roww">
 			<div class="back-to-top">
-				<!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shift" fill="currentColor" xmlns="	http://www.w3.org/2000/svg">
-				   <path fill-rule="evenodd" d="M7.27 2.047a1 1 0 0 1 1.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047zM14.346 9.5L8 2.731 1.654 9.5H4.5a1 1 0 0 1 1 1v3h5v-3a1 1 0 0 1 1-1h2.846z"/>
-				</svg> -->
 				<img class="card-img-top" src="{{url('public')}}/img/section-works/arrow.png" alt="Card image" >
 			</div>
 		</div>
